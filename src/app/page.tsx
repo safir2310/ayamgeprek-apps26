@@ -2153,106 +2153,271 @@ export default function HomePage() {
         />
       )}
 
-      {/* Logout Confirmation Dialog - Modern Design */}
+      {/* Logout Confirmation Dialog - New Modern Design */}
       <Dialog open={isLogoutConfirmOpen} onOpenChange={setIsLogoutConfirmOpen}>
-        <DialogContent className="max-w-md p-0 overflow-hidden border-0 shadow-2xl">
-          {/* Header with Gradient */}
-          <div className="bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 px-6 py-8 text-center relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute bottom-0 right-0 w-24 h-24 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
+        <DialogContent className="max-w-md p-0 overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-slate-50 to-slate-100">
+          {/* Animated Background */}
+          <div className="absolute inset-0 overflow-hidden">
+            {/* Animated gradient blobs */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-violet-400 to-purple-500 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.3, 0.4, 0.3],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+              className="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-rose-300 to-orange-400 rounded-full blur-3xl opacity-20"
+            />
+          </div>
+
+          {/* Content Container */}
+          <div className="relative z-10">
+            {/* Header with Modern Gradient */}
+            <div className="bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 px-6 py-10 text-center relative overflow-hidden">
+              {/* Animated wave pattern */}
+              <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <motion.path
+                  d="M0,60 C300,120 600,0 900,60 C1200,120 1200,120 1200,120 L1200,0 L0,0 Z"
+                  fill="rgb(248 250 252)"
+                  initial={{ d: "M0,60 C300,120 600,0 900,60 C1200,120 1200,120 1200,120 L1200,0 L0,0 Z" }}
+                  animate={{
+                    d: [
+                      "M0,60 C300,120 600,0 900,60 C1200,120 1200,120 1200,120 L1200,0 L0,0 Z",
+                      "M0,60 C300,0 600,120 900,60 C1200,0 1200,120 1200,120 L1200,0 L0,0 Z",
+                      "M0,60 C300,120 600,0 900,60 C1200,120 1200,120 1200,120 L1200,0 L0,0 Z"
+                    ]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </svg>
+
+              {/* Floating particles */}
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 bg-white/40 rounded-full"
+                  initial={{
+                    x: Math.random() * 100 + '%',
+                    y: Math.random() * 100 + '%'
+                  }}
+                  animate={{
+                    y: [0, -30, 0],
+                    opacity: [0.2, 0.8, 0.2],
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2
+                  }}
+                />
+              ))}
+
+              {/* Icon Container with Glow Effect */}
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ duration: 0.6, type: "spring", bounce: 0.5 }}
+                className="relative z-10 mb-4"
+              >
+                <motion.div
+                  animate={{
+                    rotate: 360,
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="relative"
+                >
+                  {/* Glow ring */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full blur-md opacity-60" />
+                  {/* Main circle */}
+                  <div className="relative w-24 h-24 mx-auto bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-4 border-white/30 shadow-2xl">
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        rotate: [0, -5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <LogOut className="h-12 w-12 text-white drop-shadow-lg" />
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="relative z-10"
+              >
+                <h3 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Yakin Keluar?</h3>
+                <p className="text-white/90 text-sm font-medium">Anda akan keluar dari akun</p>
+              </motion.div>
             </div>
 
-            {/* Icon with Animation */}
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.5, type: "spring" }}
-              className="relative z-10"
-            >
-              <div className="w-20 h-20 mx-auto bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border-2 border-white/30 shadow-2xl">
-                <LogOut className="h-10 w-10 text-white" />
-              </div>
-            </motion.div>
-
+            {/* Body Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-              className="relative z-10 mt-4"
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="px-6 py-6"
             >
-              <h3 className="text-2xl font-bold text-white mb-1">Yakin Ingin Logout?</h3>
-              <p className="text-white/80 text-sm">Anda akan keluar dari akun Anda</p>
-            </motion.div>
-          </div>
+              {/* User Info Card with Glass Effect */}
+              {user && (
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-white/80 backdrop-blur-xl border border-white/50 rounded-3xl p-5 mb-6 shadow-xl shadow-black/5 relative overflow-hidden"
+                >
+                  {/* Card shine effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full"
+                    animate={{
+                      x: ['-100%', '100%']
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      repeatDelay: 2
+                    }}
+                  />
+                  <div className="relative z-10 flex items-center gap-4">
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                      className="relative"
+                    >
+                      <Avatar className="w-16 h-16 border-3 border-white shadow-xl">
+                        <AvatarImage src={(user as any).profilePhoto || undefined} />
+                        <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-600 text-white font-bold text-xl">
+                          {user.name?.charAt(0).toUpperCase() || 'U'}
+                        </AvatarFallback>
+                      </Avatar>
+                      {/* Status indicator */}
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full border-3 border-white flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full" />
+                      </div>
+                    </motion.div>
+                    <div className="flex-1">
+                      <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Masuk sebagai</p>
+                      <p className="font-bold text-gray-900 text-lg leading-tight">{user.name || 'User'}</p>
+                      <p className="text-sm text-gray-600 truncate">{user.email}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
 
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-            className="px-6 py-6"
-          >
-            {/* User Info Card */}
-            {user && (
-              <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-4 mb-6">
-                <div className="flex items-center gap-4">
-                  <Avatar className="w-14 h-14 border-2 border-white shadow-lg">
-                    <AvatarImage src={(user as any).profilePhoto || undefined} />
-                    <AvatarFallback className="bg-gradient-to-br from-red-500 to-orange-500 text-white font-bold text-lg">
-                      {user.name?.charAt(0).toUpperCase() || 'U'}
-                    </AvatarFallback>
-                  </Avatar>
+              {/* Warning Message with Modern Styling */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 border-2 border-amber-200/50 rounded-3xl p-5 mb-6 relative overflow-hidden"
+              >
+                {/* Animated accent line */}
+                <motion.div
+                  className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-amber-400 via-orange-400 to-yellow-400"
+                  animate={{
+                    opacity: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity
+                  }}
+                />
+                <div className="flex gap-4 items-start">
+                  <motion.div
+                    animate={{
+                      rotate: [0, -10, 10, -10, 0]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3
+                    }}
+                    className="w-12 h-12 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center flex-shrink-0 border border-amber-200/50 shadow-lg shadow-amber-200/30"
+                  >
+                    <AlertCircle className="h-6 w-6 text-amber-600" />
+                  </motion.div>
                   <div className="flex-1">
-                    <p className="text-sm text-gray-500 mb-1">Masuk sebagai</p>
-                    <p className="font-bold text-gray-900 text-lg">{user.name || 'User'}</p>
-                    <p className="text-sm text-gray-600">{user.email}</p>
+                    <p className="text-sm text-gray-800 leading-relaxed font-medium">
+                      Setelah logout, Anda perlu login kembali untuk mengakses akun, pesanan, dan voucher Anda.
+                    </p>
                   </div>
                 </div>
-              </div>
-            )}
-
-            {/* Warning Message */}
-            <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-500 rounded-r-xl p-4 mb-6">
-              <div className="flex gap-3">
-                <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <AlertCircle className="h-5 w-5 text-amber-600" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    Setelah logout, Anda perlu login kembali untuk mengakses akun, pesanan, dan voucher Anda.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex gap-3">
-              <Button
-                variant="outline"
-                className="flex-1 h-12 text-base font-semibold border-2 hover:bg-gray-50"
-                onClick={() => setIsLogoutConfirmOpen(false)}
-              >
-                <X className="h-4 w-4 mr-2" />
-                Batal
-              </Button>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex-1"
-              >
-                <Button
-                  variant="destructive"
-                  className="w-full h-12 text-base font-semibold bg-gradient-to-r from-red-600 via-orange-500 to-red-600 hover:from-red-700 hover:via-orange-600 hover:to-red-700 border-0 shadow-lg shadow-red-500/25"
-                  onClick={confirmLogout}
-                >
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Ya, Logout
-                </Button>
               </motion.div>
-            </div>
-          </motion.div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex-1"
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full h-14 text-base font-semibold border-2 border-gray-300 hover:border-gray-400 hover:bg-white/80 bg-white/50 backdrop-blur-sm shadow-lg shadow-black/5 transition-all"
+                    onClick={() => setIsLogoutConfirmOpen(false)}
+                  >
+                    <X className="h-5 w-5 mr-2" />
+                    Batal
+                  </Button>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex-1"
+                >
+                  <Button
+                    className="w-full h-14 text-base font-semibold bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 hover:from-violet-700 hover:via-purple-700 hover:to-fuchsia-700 border-0 shadow-xl shadow-purple-500/30 hover:shadow-purple-500/40 transition-all"
+                    onClick={confirmLogout}
+                  >
+                    <LogOut className="h-5 w-5 mr-2" />
+                    Ya, Logout
+                  </Button>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </DialogContent>
       </Dialog>
 
