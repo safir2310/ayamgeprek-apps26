@@ -542,7 +542,7 @@ export default function HomePage() {
     if (isCheckoutOpen) {
       fetchAvailableVouchers()
     }
-  }, [isCheckoutOpen, cartTotal])
+  }, [isCheckoutOpen])
 
   // Handle forgot password verification
   const handleForgotPassword = async (e: React.FormEvent) => {
