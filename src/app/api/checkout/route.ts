@@ -7,24 +7,31 @@ export async function POST(request: NextRequest) {
 
   try {
     const token = getTokenFromRequest(request)
-    console.log('[Checkout] Token:', token ? 'Present' : 'Missing')
+    console.log('[Checkout] Token:', token ? `Present (${token.length} chars)` : 'Missing')
 
     if (!token) {
       console.error('[Checkout] No token provided')
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: 'Token tidak ditemukan. Silakan login ulang.' }, { status: 401 })
     }
 
     const payload = await verifyToken(token)
     console.log('[Checkout] Token payload:', payload)
 
     if (!payload) {
-      console.error('[Checkout] Invalid token')
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
+      console.error('[Checkout] Invalid token - verification failed')
+      console.error('[Checkout] Token preview:', token.substring(0, 20) + '...' + token.substring(token.length - 20))
+      return NextResponse.json({
+        error: 'Token tidak valid atau sudah kadaluarsa. Silakan login ulang.',
+        code: 'INVALID_TOKEN'
+      }, { status: 401 })
     }
 
     if (!payload.userId) {
       console.error('[Checkout] Token missing userId')
-      return NextResponse.json({ error: 'Invalid token: missing userId' }, { status: 401 })
+      return NextResponse.json({
+        error: 'Token tidak valid (userId tidak ditemukan). Silakan login ulang.',
+        code: 'MISSING_USER_ID'
+      }, { status: 401 })
     }
 
     console.log('[Checkout] Parsing request body...')

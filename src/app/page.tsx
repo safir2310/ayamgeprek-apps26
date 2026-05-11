@@ -1045,6 +1045,20 @@ export default function HomePage() {
           }
         }, 500)
       } else {
+        // Handle specific error codes
+        if (data.code === 'INVALID_TOKEN' || data.error?.includes('Token tidak valid') || data.error?.includes('sudah kadaluarsa')) {
+          console.error('[Frontend Checkout] Invalid token, forcing logout')
+          toast.error('Sesi login Anda telah berakhir. Silakan login ulang.')
+
+          // Logout and clear invalid token
+          await clearCart(token)
+          logout()
+          setOrders([])
+          setIsCheckoutOpen(false)
+          setIsAuthModalOpen(true)
+          return
+        }
+
         console.error('[Frontend Checkout] Checkout failed:', data.error)
         toast.error(data.error || 'Terjadi kesalahan saat checkout')
       }
