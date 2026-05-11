@@ -19,9 +19,13 @@ import {
   Clock,
   DollarSign,
   ArrowUp,
+  ArrowDown,
   Menu,
   X,
   ChevronRight,
+  ShoppingCart,
+  CheckCircle,
+  AlertCircle,
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -78,11 +82,6 @@ const AdminDashboard: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle');
 
-  // Early return for POS page
-  if (activePage === 'pos') {
-    return <POS onClose={() => setActivePage('dashboard')} />;
-  }
-
   useEffect(() => {
     loadDashboardData();
   }, []);
@@ -92,7 +91,7 @@ const AdminDashboard: React.FC = () => {
     try {
       // Simulate API calls - replace with actual API calls
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setStats({
         totalSales: 45231.89,
         totalOrders: 487,
@@ -123,6 +122,11 @@ const AdminDashboard: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  // Early return for POS page
+  if (activePage === 'pos') {
+    return <POS onClose={() => setActivePage('dashboard')} />;
+  }
 
   const handleDatabaseSync = async () => {
     setIsSyncing(true);
