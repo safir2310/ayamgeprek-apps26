@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { getTokenFromRequest, verifyToken } from '@/lib/auth'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 export async function POST(request: NextRequest) {
   const prisma = new PrismaClient()
